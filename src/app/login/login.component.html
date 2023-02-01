@@ -1,0 +1,28 @@
+<form class="login-form">
+    <mat-icon class="login-icon" color="primary" >account_circle</mat-icon>
+    <mat-form-field class="full-width" >
+        <mat-label>Email</mat-label>
+        <input type="email" [(ngModel)]="loginData.email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+            placeholder="Enter your email">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input [(ngModel)]="loginData.password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher" [type]="hide ? 'password' : 'text'">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="passwordFormControl.errors!=null && !passwordFormControl.hasError('required')">
+            Password must have atleast 8 characters
+        </mat-error>
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onClickLogin()" >Log In</button>
+</form>

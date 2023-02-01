@@ -1,0 +1,13 @@
+.middle {
+    flex: 1 1 auto;
+}
+
+.badge-indicator{
+    font-size: 35px;
+    height: 35px ;
+    width: 35px;
+}
+
+button {
+    margin-right: 30px;
+}
