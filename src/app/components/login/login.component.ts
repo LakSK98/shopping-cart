@@ -1,7 +1,10 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { HttpService } from "../http.service";
+import { Router } from "@angular/router";
+import { HttpService } from "src/app/services/http/http.service";
+import { UserService } from "src/app/services/user/user.service";
+import  User  from 'src/app/models/user.model';
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -20,7 +23,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class LoginComponent {
 
-    constructor(private httpService: HttpService){}
+    constructor(private httpService: HttpService, private router: Router, private userService: UserService){}
 
     loginData = { email:'', password:'' };
 
@@ -30,7 +33,12 @@ export class LoginComponent {
     matcher = new MyErrorStateMatcher();
 
     onClickLogin(){
-        this.httpService.postData('users/login',this.loginData);
+        this.httpService.postData('users/login',this.loginData).subscribe((res:User)=>{
+            this.userService.setUserData(res);
+            this.router.navigate([`/home/${res.id}`]);
+        },error=>{
+            
+        });
     }
 
 }

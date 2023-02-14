@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { HttpService } from '../http.service';
+import { HttpService } from 'src/app/services/http/http.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -20,15 +20,17 @@ export class RegisterComponent {
   constructor(private httpService: HttpService){}
 
   confirmPassword = '';
-  registerData = { username:'', email:'', password:'' };
+  registerData = { mobileNumber:'', email:'', password:'' };
   hide = true;
-  usernameFormControl = new FormControl('', [Validators.required]);
+  mobileNumberFormControl = new FormControl('', [Validators.required]);
   emailFormControl = new FormControl('', [Validators.required, Validators.email]);
   passwordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
   confirmPasswordFormControl = new FormControl('', [Validators.required, Validators.minLength(8)]);
   matcher = new MyErrorStateMatcher();
 
   onClickRegister = ():void => {
+    this.registerData.mobileNumber = this.registerData.mobileNumber.toString();
+    console.log(this.registerData);
     this.httpService.postData('users',this.registerData);
   }
 }

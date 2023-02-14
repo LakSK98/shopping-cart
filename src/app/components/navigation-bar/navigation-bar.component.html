@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+    <span>Shopping Cart</span>
+    <span class="middle"></span>
+    <span>
+        <input type="text" matInput placeholder="Search" name="search" [(ngModel)]="search">
+        <button (click)="onSearch()" matSuffix mat-button><mat-icon>search</mat-icon></button>
+    </span>
+    <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="showBasket=!showBasket">
+        <mat-icon class="badge-indicator" matBadge={{count}} matBadgeColor="warn">shopping_cart</mat-icon>
+    </button>
+    <app-cart *ngIf="showBasket" ></app-cart>
+</mat-toolbar>

@@ -1,0 +1,30 @@
+<div *ngIf="cart.length>0" class="cart" >
+    <h1>Basket</h1>
+    <div *ngFor="let product of cart" >
+        <hr *ngIf="product.qty>0" >
+        <div *ngIf="product.qty>0" class="item" >
+            <img src={{product.image}} alt="alt" />
+            <div class="itemDetails" >
+                <h2>{{product.title}}</h2>
+                <div class="itemQty" >
+                    <p>Quantity : {{product.qty}}</p>
+                    <p>| Price : {{product.price}}</p>
+                </div>
+            </div>
+            <div class="controls" >
+                <div>
+                    <button (click)="onClickIncrement(product.id)" mat-icon-button class="button" ><mat-icon >add</mat-icon></button>
+                </div>
+                <div>
+                    <button (click)="onClickDecrement(product.id)" mat-icon-button class="button" ><mat-icon >remove</mat-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button (click)="onClickCheckout()" mat-raised-button color="accent" >CHECKOUT</button>
+</div>
+<div *ngIf="cart.length==0" class="empty-cart" >
+    <h1>Basket</h1>
+    <hr>
+    <h2>Basket is empty.</h2>
+</div>

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +11,12 @@ export class HttpService {
 
   constructor(private httpClient : HttpClient) { }
 
-  postData(endPoint:string, data:any):any{
-    return this.httpClient.post(this.baseUrl+endPoint,data).subscribe((res)=>{
-      console.log(res);
-    },error=>{
-      console.log(error.status);
-    });
+  postData(endPoint:string, data:any):Observable<any>{
+    return this.httpClient.post(this.baseUrl+endPoint,data);
   }
+
+  getData(endPoint:string):Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl+endPoint);
+  }
+
 }

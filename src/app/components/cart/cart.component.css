@@ -1,0 +1,86 @@
+.cart{
+    position: absolute;
+    top:9%;
+    right: 0%;
+    color: black;
+    z-index: 1;
+    background-color: aliceblue;
+    width:auto;
+    overflow: auto;
+    padding: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    max-height: 88vh;
+}
+
+.empty-cart{
+    position: absolute;
+    top:9%;
+    right: 0%;
+    color: black;
+    z-index: 1;
+    background-color: aliceblue;
+    width:25%;
+    overflow: auto;
+    padding: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    height: 50vh;
+    text-align: left;
+}
+
+img{
+    width: 70px;
+    height: 70px;
+}
+
+.item{
+    display: flex;
+}
+
+.itemDetails{
+    margin-left: 8px;
+    text-align: left;
+}
+
+p{
+    margin-top: -20px;
+    margin-right: 10px;
+}
+
+h2{
+    font-family: monospace;
+    font-weight: 900;
+}
+
+.itemQty{
+    display: flex;
+    font-size: 15px;
+}
+
+h1{
+    font-size: 30px;
+    text-align: left;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.controls{
+    display: block;
+}
+
+button{
+    margin-top: 10px;
+}
+
+.item:hover{
+    background-color: darkgray;
+    padding: 2px;
+    cursor: pointer;
+}
+
+.button{
+    margin-top: -3px;
+}
+
+.button:hover{
+    background-color: whitesmoke;
+}
