@@ -7,8 +7,6 @@ export interface CartState {
     count: number
 }
 
-
-
 const getInitialState = (): CartState => {
     const cartState = localStorage.getItem('cartState');
     if (cartState && !cartState.match("undefined")) {

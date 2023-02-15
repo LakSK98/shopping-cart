@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -9,14 +9,18 @@ export class HttpService {
 
   private baseUrl = "http://localhost:3000/";
 
-  constructor(private httpClient : HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
-  postData(endPoint:string, data:any):Observable<any>{
-    return this.httpClient.post(this.baseUrl+endPoint,data);
+  postData(endPoint: string, data: any): Observable<any> {
+    return this.httpClient.post(this.baseUrl + endPoint, data);
   }
 
-  getData(endPoint:string):Observable<any>{
-    return this.httpClient.get<any>(this.baseUrl+endPoint);
+  getData(endPoint: string): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + endPoint);
+  }
+
+  getDataWithHeaders(endPoint: string, header: { headers : HttpHeaders }): Observable<any> {
+    return this.httpClient.get<any>(this.baseUrl + endPoint, header);
   }
 
 }

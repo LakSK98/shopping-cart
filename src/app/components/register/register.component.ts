@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -17,7 +18,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class RegisterComponent {
 
-  constructor(private httpService: HttpService){}
+  constructor(private authService: AuthService){}
 
   confirmPassword = '';
   registerData = { mobileNumber:'', email:'', password:'' };
@@ -30,7 +31,6 @@ export class RegisterComponent {
 
   onClickRegister = ():void => {
     this.registerData.mobileNumber = this.registerData.mobileNumber.toString();
-    console.log(this.registerData);
-    this.httpService.postData('users',this.registerData);
+    this.authService.register(this.registerData);
   }
 }

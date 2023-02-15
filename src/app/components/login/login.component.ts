@@ -4,7 +4,8 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { Router } from "@angular/router";
 import { HttpService } from "src/app/services/http/http.service";
 import { UserService } from "src/app/services/user/user.service";
-import  User  from 'src/app/models/user.model';
+import TokenResponse from "src/app/models/token-response-model";
+import { AuthService } from "src/app/services/auth/auth.service";
 
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
@@ -23,7 +24,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 export class LoginComponent {
 
-    constructor(private httpService: HttpService, private router: Router, private userService: UserService){}
+    constructor(private authService: AuthService){}
 
     loginData = { email:'', password:'' };
 
@@ -33,12 +34,7 @@ export class LoginComponent {
     matcher = new MyErrorStateMatcher();
 
     onClickLogin(){
-        this.httpService.postData('users/login',this.loginData).subscribe((res:User)=>{
-            this.userService.setUserData(res);
-            this.router.navigate([`/home/${res.id}`]);
-        },error=>{
-            
-        });
+        this.authService.login(this.loginData);
     }
 
 }

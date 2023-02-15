@@ -25,6 +25,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { CartComponent } from './components/cart/cart.component';
 import { MatListModule } from '@angular/material/list';
 import { CartStoreModule } from './store/store.module';
+import { ProductRatingComponent } from './product-rating/product-rating.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { CartStoreModule } from './store/store.module';
     HomepageComponent,
     NavigationBarComponent,
     SearchResultsComponent,
-    CartComponent
+    CartComponent,
+    ProductRatingComponent
   ],
   imports: [
     BrowserModule,

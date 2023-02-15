@@ -8,5 +8,11 @@
     <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="showBasket=!showBasket">
         <mat-icon class="badge-indicator" matBadge={{count}} matBadgeColor="warn">shopping_cart</mat-icon>
     </button>
+    <button class="cart-button" *ngIf="showLogOut" mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="onLogOut()">
+        <mat-icon>exit_to_app</mat-icon>
+    </button>
+    <button class="login-button" *ngIf="!showLogOut" mat-flat-button (click)="onClickLogin()">
+        Login
+    </button>
     <app-cart *ngIf="showBasket" ></app-cart>
 </mat-toolbar>

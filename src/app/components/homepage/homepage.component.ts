@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Product from 'src/app/models/product.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -10,13 +11,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private httpService:HttpService, private userService: UserService){}
+  constructor(private httpService:HttpService, private authService: AuthService){}
 
   productList : Array<Product> = [];
   
   ngOnInit(){
     this.httpService.getData('products').subscribe((data:Array<Product>)=>this.productList=data);
-    console.log(this.userService.userData);
   }
 
 }
