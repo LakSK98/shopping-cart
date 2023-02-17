@@ -25,7 +25,11 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { CartComponent } from './components/cart/cart.component';
 import { MatListModule } from '@angular/material/list';
 import { CartStoreModule } from './store/store.module';
-import { ProductRatingComponent } from './product-rating/product-rating.component';
+import { ProductRatingComponent, ProductRatingPopup } from './components/product-rating/product-rating.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,9 @@ import { ProductRatingComponent } from './product-rating/product-rating.componen
     NavigationBarComponent,
     SearchResultsComponent,
     CartComponent,
-    ProductRatingComponent
+    ProductRatingComponent,
+    ProductRatingPopup,
+    StarRatingComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +63,10 @@ import { ProductRatingComponent } from './product-rating/product-rating.componen
     MatBadgeModule,
     MatGridListModule,
     MatListModule,
-    CartStoreModule
+    CartStoreModule,
+    MatDialogModule,
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

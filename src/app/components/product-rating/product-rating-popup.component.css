@@ -1,0 +1,14 @@
+img{
+    width:350px;
+    height: 350px;
+}
+
+.container{
+    padding: 0px;
+    margin: 0px;
+}
+
+button {
+    margin-bottom: 30px;
+    margin-right: 30px;
+}

@@ -39,4 +39,8 @@ export class NavigationBarComponent {
   onClickLogin(){
     this.router.navigate(['/login']);
   }
+
+  goToHome(){
+    this.router.navigate(['/home']);
+  }
 }

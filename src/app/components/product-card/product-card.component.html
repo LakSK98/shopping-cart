@@ -11,12 +11,13 @@
       </p>
     </mat-card-content>
     <strong>PRICE: {{product.price}}</strong>
-    <strong>RATING: {{product.noOfRatings==0?"No reviews":product.totalRating/product.noOfRatings}}</strong>
+    <strong>RATING: {{product.noOfRatings==0?"No reviews":(product.totalRating/product.noOfRatings).toFixed(1)}}</strong>
     <mat-card-actions>
       <button mat-button (click)="addToCart(product)" >ADD TO CART
         <mat-icon class="badge-indicator">shopping_cart</mat-icon>
       </button>
-      <button mat-button>RATE
+      <button mat-button (click)="rateProduct()" >RATE
+        <app-product-rating [product]="product" ></app-product-rating>
         <mat-icon class="badge-indicator">star</mat-icon>
       </button>
     </mat-card-actions>

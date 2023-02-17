@@ -25,7 +25,7 @@ export const cartReducer = createReducer(
         const existingItem = state.items.find(cartItem => cartItem.id == item.id);
         if (existingItem) {
             const updatedItem = { ...existingItem, qty: existingItem.qty + 1 };
-            return { items: [...state.items.filter(i => i.id != item.id), updatedItem], count: state.count + 1 };
+            return { items: state.items.map(i => i.id != item.id? i : updatedItem), count: state.count + 1 };
         } else {
             return { items: [...state.items, { ...item, qty: 1 }], count: state.count + 1 };
         }

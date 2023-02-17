@@ -1,5 +1,5 @@
 <mat-toolbar color="primary">
-    <span>Shopping Cart</span>
+    <span (click)="goToHome()" class="app-name"  >Shopping Cart</span>
     <span class="middle"></span>
     <span>
         <input type="text" matInput placeholder="Search" name="search" [(ngModel)]="search">

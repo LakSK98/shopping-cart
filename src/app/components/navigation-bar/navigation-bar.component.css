@@ -15,3 +15,7 @@ button {
 .login-button{
     margin-right: 5px;
 }
+
+.app-name{
+    cursor: pointer;
+}

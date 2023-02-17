@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CartItem } from 'src/app/models/cart-item.model';
 import { CartService } from 'src/app/services/cart/cart.service';
 
@@ -9,24 +11,36 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class CartComponent {
 
-  constructor(private cartService: CartService){}
+  isLogged: boolean = false;
+
+  constructor(
+    private cartService: CartService,
+    store: Store<{ isLogged: boolean }>,
+    private readonly router: Router
+  ) {
+    store.select('isLogged').subscribe(data => this.isLogged = data);
+  }
 
   cart: Array<CartItem> = [];
 
-  ngOnInit(){
-    this.cartService.items$.subscribe(res=>this.cart=res.items);
+  ngOnInit() {
+    this.cartService.items$.subscribe(res => this.cart = res.items);
   }
 
-  onClickIncrement(id:number){
+  onClickIncrement(id: number) {
     this.cartService.incrementCount(id);
   }
 
-  onClickDecrement(id:number){
+  onClickDecrement(id: number) {
     this.cartService.decrementCount(id);
   }
 
-  onClickCheckout(){
-    window.alert('You have sucessfully checkedout the products.');
+  onClickCheckout() {
+    if (this.isLogged) {
+      console.log("You have successfully checkedout cart");
+    } else {
+      this.router.navigate(['/login']).then(()=>location.reload());
+    }
   }
 
 }

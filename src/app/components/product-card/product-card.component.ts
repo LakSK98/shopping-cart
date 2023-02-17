@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import Product from 'src/app/models/product.model';
 import { CartService } from 'src/app/services/cart/cart.service';
+import { ProductRatingComponent } from '../product-rating/product-rating.component';
 
 @Component({
   selector: 'app-product-card',
@@ -8,6 +9,8 @@ import { CartService } from 'src/app/services/cart/cart.service';
   styleUrls: ['./product-card.component.css']
 })
 export class ProductCardComponent {
+
+  @ViewChild(ProductRatingComponent) productRating : ProductRatingComponent | undefined;
 
   constructor(private cartService:CartService){}
 
@@ -24,6 +27,10 @@ export class ProductCardComponent {
 
   addToCart(item:Product){
     this.cartService.addToCart(item);
+  }
+
+  rateProduct(){
+    this.productRating?.openDialog();
   }
 
 }

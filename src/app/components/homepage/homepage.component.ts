@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Product from 'src/app/models/product.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { HttpService } from 'src/app/services/http/http.service';
+import { ProductService } from 'src/app/services/product/product.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -11,12 +12,12 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor(private httpService:HttpService, private authService: AuthService){}
+  constructor(private productService: ProductService) { }
 
-  productList : Array<Product> = [];
-  
-  ngOnInit(){
-    this.httpService.getData('products').subscribe((data:Array<Product>)=>this.productList=data);
+  productList: Array<Product> = [];
+
+  ngOnInit() {
+    this.productService.productList$.subscribe(data => this.productList = data);
   }
 
 }

@@ -23,4 +23,9 @@ export class HttpService {
     return this.httpClient.get<any>(this.baseUrl + endPoint, header);
   }
 
+  updateData(endPoint:string, data: any){
+    const { id , ...rest } = data;
+    return this.httpClient.patch<any>(this.baseUrl+endPoint+`/${id}`,data);
+  }
+
 }

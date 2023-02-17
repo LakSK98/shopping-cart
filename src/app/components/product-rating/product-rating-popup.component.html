@@ -1,0 +1,21 @@
+<div class="container" >
+<h2 mat-dialog-title>{{data.title}}</h2>
+<h5>{{data.subTitle}}</h5>
+<mat-dialog-content>
+    <div style="display: flex;" >
+        <div>
+            <img src={{data.image}} />
+        </div>
+        <div style="text-align: left;padding: 10px;">
+            <h3>Description : </h3>
+            <p>{{data.description}}</p>
+            <p>Price : {{data.price}}</p>
+            <p>Rating: {{data.noOfRatings==0?"No Reviews":data.totalRating/data.noOfRatings}}</p>
+            <app-star-rating  [rating]="rating"  [starCount]="starCount" [color]="starColor" (ratingUpdated)="onRatingChanged($event)" ></app-star-rating>
+        </div>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button [mat-dialog-close]="true"  (click)="onClickSubmit()" cdkFocusInitial>Submit</button>
+</mat-dialog-actions>
+</div>
