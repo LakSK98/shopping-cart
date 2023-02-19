@@ -11,7 +11,6 @@ export class AppComponent {
   }
 
   ngOnInit(){
-    console.log("Hi");
     this.authService.authorizeUser();
   }
 }

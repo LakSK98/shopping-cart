@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { CartItem } from 'src/app/models/cart-item.model';
-import { addToCart, decrementItem, incrementItem, removeFromCart } from './cart.actions';
+import { addToCart, clearCart, decrementItem, incrementItem, removeFromCart } from './cart.actions';
 
 export interface CartState {
     items: Array<CartItem>,
@@ -14,8 +14,6 @@ const getInitialState = (): CartState => {
     }
     return { items: [], count: 0 }
 }
-
-console.log(getInitialState());
 
 export const initialState: CartState = getInitialState();
 
@@ -51,5 +49,8 @@ export const cartReducer = createReducer(
             return { items: state.items.map(item => item.id == id ? updatedItem : item), count: state.count - 1 };
         }
         return state;
+    }),
+    on(clearCart,(state)=>{
+        return { items:[], count: 0};
     })
 );

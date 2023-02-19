@@ -27,12 +27,10 @@ export class StarRatingComponent {
     }
   }
   onClick(rating:number) {
-    console.log(rating)
     this.snackBar.open('You rated ' + rating + ' / ' + this.starCount, '', {
       duration: this.snackBarDuration
     });
     this.ratingUpdated.emit(rating);
-    console.log(this.ratingUpdated);
   }
 
   showIcon(index:number) {

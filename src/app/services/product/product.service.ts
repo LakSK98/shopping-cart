@@ -16,11 +16,11 @@ export class ProductService {
 
   constructor(
     private readonly httpService: HttpService,
-    private readonly store: Store<{ products: Array<Product>, isLogged: boolean }>,
+    private readonly store: Store<{ products: Array<Product>, login: boolean }>,
     private readonly router: Router
   ) {
     this.productList$ = store.select('products');
-    store.select('isLogged').subscribe(data => this.isLogged = data);
+    store.select('login').subscribe(data => this.isLogged = data);
     this.httpService.getData('products').subscribe((data: Array<Product>) => this.store.dispatch(setProducts({ products: data })));
   }
 

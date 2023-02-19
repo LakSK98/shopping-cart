@@ -11,10 +11,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 })
 export class ProductRatingComponent {
 
-  constructor(public dialog: MatDialog) { 
-    this.clickRating.emit(this.openDialog);
-    console.log(this.clickRating);
-  }
+  constructor(public dialog: MatDialog) { }
 
   @Input("product") product: Product = {
     id: 0,
@@ -26,8 +23,6 @@ export class ProductRatingComponent {
     totalRating: 0,
     noOfRatings: 0
   }
-
-  @Output() clickRating = new EventEmitter();
 
   openDialog = () => {
     const dialogRef = this.dialog.open(ProductRatingPopup, {
@@ -48,7 +43,7 @@ export class ProductRatingComponent {
   styleUrls: ['product-rating-popup.component.css'],
 })
 export class ProductRatingPopup {
-  
+
   rating: number = 3;
   starCount: number = 5;
   starColor: StarRatingColor = StarRatingColor.accent;
@@ -57,14 +52,13 @@ export class ProductRatingPopup {
   constructor(@Inject(MAT_DIALOG_DATA) public data: Product, private readonly productService: ProductService) { }
 
   onRatingChanged(rating: number) {
-    console.log(rating);
     this.rating = rating;
   }
 
-  onClickSubmit(){
+  onClickSubmit() {
     const updatedProduct = {
-      ...this.data, 
-      noOfRatings: this.data.noOfRatings + 1 ,
+      ...this.data,
+      noOfRatings: this.data.noOfRatings + 1,
       totalRating: this.data.totalRating + this.rating
     }
     this.productService.updateProduct(updatedProduct);

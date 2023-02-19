@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import Product from 'src/app/models/product.model';
-import { addToCart as ATC, incrementItem, decrementItem } from 'src/app/store/cart/cart.actions';
+import { addToCart as ATC, incrementItem, decrementItem, clearCart } from 'src/app/store/cart/cart.actions';
 import { CartState } from 'src/app/store/cart/cart.reducer';
 
 @Injectable({
@@ -29,7 +29,8 @@ export class CartService {
   }
 
   clearCart(){
-    
+    this.store.dispatch(clearCart());
+    localStorage.setItem('cartState', '');
   }
   
   removeFromCart(id:number){

@@ -12,7 +12,9 @@ export class SearchResultsComponent {
   constructor(private route: ActivatedRoute, private httpService: HttpService) { }
   ngOnInit() {
     this.route.params.subscribe(params=>{
-      this.httpService.getData(`products/search/${params['id']}`)
+      const endPoint = 'products/' + (params['key']!='' ? `search/${params['key']}` : '');
+      console.log(endPoint);
+      this.httpService.getData(endPoint)
       .subscribe((data:Array<Product>) => this.productList = data);
     });
   }

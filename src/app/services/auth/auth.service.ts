@@ -62,7 +62,6 @@ export class AuthService {
     this.httpService.getDataWithHeaders('users/auth', this.getHeader())
       .subscribe(res => {
         this.userService.setUserData({ ...res, password: "Not Accessible" });
-        console.log(this.userService.userData);
         this.loginStore.dispatch(setIsLogged({isLogged:true}));
       }, error => this.loginStore.dispatch(setIsLogged({isLogged:false})));
   }

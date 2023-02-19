@@ -29,7 +29,7 @@ export class NavigationBarComponent {
   }
 
   onSearch() {
-    this.router.navigate(['/search', this.search]);
+    this.router.navigate(['/search' ,this.search]);
   }
 
   onLogOut() {
